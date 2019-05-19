@@ -16,8 +16,17 @@
 <property name="dataSource" ref="ds"></property>
 </bean>
 
-<bean id="mdao" class="com.hari.MemberDao.MemberDao">
+<bean id="mdao" class="com.hari.dao.MemberDao">
+<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+</bean>
+<bean id="pdao" class="com.hari.dao.ProductDao">
+<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+</bean>
+<bean id="odao" class="com.hari.dao.OrderDao">
 <property name="jdbcTemplate" ref="jdbcTemplate"></property>
 </bean>
 
+<bean id="paydao" class="com.hari.dao.PaymentDao">
+<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+</bean>
 </beans>
