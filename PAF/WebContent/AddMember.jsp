@@ -19,6 +19,9 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>				
 		<script src="themes/js/superfish.js"></script>	
 		<script src="themes/js/jquery.scrolltotop.js"></script>
+		
+		<script type="text/javascript" src=Controller/jquery-3.4.1.min.js></script>
+		<script type="text/javascript" src=Controller/controllerMain.js></script>
 </head>
 <body>
 
@@ -70,20 +73,39 @@
 			<br/>
 			<section class="main-content">
 				<!-- Main Content -->
-				<form style = "text-align: center" action="entry/member/Register" method="POST" onsubmit="return checkPassword()">
+				
+				<%@ page import = "javax.sql.*" %>
+			    <%@ page import = "com.hari.controller.LoginController" %>
+				<%
+					LoginController lg = new LoginController();
+					String regMsg = "Please fill details to register";
+					/*if(request.getMethod().equalsIgnoreCase("post")){
+						if(lg.loginUser(request.getParameter("txtUserName"), request.getParameter("txtPassword"), request, response).equals("Success")){
+							request.getRequestDispatcher("/Home.jsp").forward(request, response);
+						}
+						else{
+							regMsg = "Invalid credentials";
+						}
+					}*/
+				%>
+				
+				<form style = "text-align: center" id = "formRegister" action="AddMember.jsp" method="POST">
 					<h1>Registration</h1>
-					<label>User Name:</label> <input type="text" name="name" required/><br/>
-					<label>Password:</label> <input type="password" name="password" id = "pw" required/><br/>
-					<label>Re-Type Password:</label> <input type="password" name="rpassword" id = "cpw" required/><br/>
+					<label>User Name:</label> <input type="text" name="name" id = "name"/><br/>
+					<label>Password:</label> <input type="password" name="password" id = "pw"/><br/>
+					<label>Re-Type Password:</label> <input type="password" name="rpassword" id = "cpw"/><br/>
 					<label>Type:</label> 
 					<select name = "type">
 					  <option value="Seller">Seller</option>
 					  <option value="Buyer">Buyer</option>
 					</select><br/>
-					<label>Address:</label> <input type="text" name="add" required/><br/>
-					<label>Email id:</label> <input type="text" name="mail" required/><br/>
-					<label>Contact Number:</label> <input type="text" name="cno" required/><br/>
-					<input type="submit" value="Submit"/>
+					<label>Address:</label> <input type="text" name="add"/><br/>
+					<label>Email id:</label> <input id = "mail" type="text" name="mail"/><br/>
+					<label>Contact Number:</label> <input id = "cno" type="text" name="cno"/><br/>
+					<input id = "btnRegister" name = "btnRegister" type = "button" value = "Register"> <br/>
+					<div id = "divStsMsgRegister">
+						<% out.println(regMsg); %>
+					</div>
 				</form>
 			</section>
 			<br/>
