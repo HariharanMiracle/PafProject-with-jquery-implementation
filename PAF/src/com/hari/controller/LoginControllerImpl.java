@@ -12,4 +12,6 @@ public interface LoginControllerImpl {
 
 	void redirect(String url, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException;
+	
+	public String loginUser(String name, String pass, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

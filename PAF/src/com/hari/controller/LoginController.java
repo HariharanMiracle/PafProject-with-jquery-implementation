@@ -76,4 +76,23 @@ public class LoginController implements LoginControllerImpl {
             System.out.println("Failed");
         }
 	}
+	
+	public String loginUser(String name, String pass, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		try(ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml")) {
+			dao=(MemberDao)ctx.getBean("mdao");
+			Member mem = dao.loginValidate(name, pass);
+			if ((mem == null) || !pass.equals(mem.getPassword())) {
+				return "fail";
+			}
+			else {
+				HttpSession session=request.getSession();  
+		        session.setAttribute("member",mem);
+				return "Success";
+		    }
+		}
+		catch (Exception e) {
+			System.out.println("Error: " + e);
+			return "fail";	
+		}
+	}
 }
