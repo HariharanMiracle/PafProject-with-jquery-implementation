@@ -1,3 +1,9 @@
+
+my parts are login, add member, edit member, delete member
+
+Look at login.jsp, AddMember.jsp for my functions
+
+
 # PafProject
  All the instructions to install and test my system
  After cloning the file system:
@@ -11,3 +17,4 @@
  Then you can test my project... :)
  
  Note: In tomcat server the HTTP port should be 8081, if not my project will not run.
+
